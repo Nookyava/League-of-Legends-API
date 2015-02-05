@@ -84,12 +84,25 @@
 	}
 	
 	/*
-		Name: getSummonerAvatar
+		Name: getSummonerIconID
+		Arguments: name (string), summonerdata (array)
+		Returns: level (string)
+		Desc: Returns the level of the summoner
+	*/
+	function getSummonerIconID($name, $summonerdata) {
+		return $summonerdata[$name]['profileIconId'];
+	}
+	
+	/*
+		Name: getSummonerAvatarPNG
 		Arguments: name (string), summonerdata(array)
 		Returns: avatarid (string)
 		Desc: Returns the avatar of the player
 	*/
-	function getSummonerAvatar($name) {
-		return $summonerdata[$name]['profileIconId'];
+	function getSummonerAvatar($iconid) {
+		$iconver = '5.2.2';
+		$iconurl = 'http://ddragon.leagueoflegends.com/cdn/'.$iconver.'/img/profileicon/'.$iconid.'.png';
+		
+		return $iconurl;
 	}
 ?>
