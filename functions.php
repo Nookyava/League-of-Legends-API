@@ -47,7 +47,7 @@
 		for($i = 0, $size = count($summonerstats['playerStatSummaries']); $i < $size; $i++) {
 			if ($summonerstats['playerStatSummaries'][$i]['playerStatSummaryType'] == 'Unranked') {
 				return $summonerstats['playerStatSummaries'][$i]['wins'];
-				break;
+				break; // I break here just so I make sure it doesn't return 0. Seems redundant but I'd rather make sure.
 			}
 		}
 		return 0;
