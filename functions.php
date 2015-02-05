@@ -44,7 +44,13 @@
 		Desc: Returns how many times the player has won on that map
 	*/
 	function getSummonerWins($summonerstats) {
-		return $summonerstats['playerStatSummaries'][9]['wins'];
+		for($i = 0, $size = count($summonerstats['playerStatSummaries']); $i < $size; $i++) {
+			if ($summonerstats['playerStatSummaries'][$i]['playerStatSummaryType'] == 'Unranked') {
+				return $summonerstats['playerStatSummaries'][$i]['wins'];
+				break;
+			}
+		}
+		return 0;
 	}
 	
 	/*
