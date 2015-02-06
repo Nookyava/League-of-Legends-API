@@ -62,7 +62,7 @@
 			Returns: level (string)
 			Desc: Returns the level of the summoner
 		*/
-		public function getSummonerName() {;
+		public function getSummonerName() {
 			return $this->summonerinfo['general'][$this->summonername]['name'];
 		}
 		
