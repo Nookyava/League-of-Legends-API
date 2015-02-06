@@ -11,6 +11,7 @@
 			Desc: Sets all the variables necessary
 		*/
 		public function setSummonerInfo($enteredname) {
+			$enteredname = preg_replace('/\s+/', '', $enteredname); // Remove spaces
 			$this->summonerinfo['general'] = $this->requestSummonerInfo($enteredname);
 			$this->summonerinfo['stats'] = $this->getSummonerStats($this->summonerinfo['general'][$enteredname]['id']);
 			
