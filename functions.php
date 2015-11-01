@@ -1,5 +1,21 @@
 <?php
-	class LoLAPI {
+	$api_version = "1.0.0"; // Just a basic version, we'll replace it later
+	
+	function getCurrentVersion() {
+		global $api_version;
+		
+		$config = include('config/config.php');
+		$url = 'https://na.api.pvp.net/api/lol/static-data/na/v1.2/versions?api_key='.$config['key'];
+		
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$result = curl_exec($ch);
+		curl_close($ch);
+		
+		$api_version = json_decode($result, true)[0];
+	}
+		
+	class Summoner {
 		private $summonerinfo = array();
 		private $summonername;
 		private $summonerid;
@@ -84,8 +100,8 @@
 			Desc: Returns the avatar of the player
 		*/
 		public function getSummonerAvatar() {
-			$iconver = '5.2.2';
-			$iconurl = 'http://ddragon.leagueoflegends.com/cdn/'.$iconver.'/img/profileicon/'.$this->summonerinfo['general'][$this->summonername]['profileIconId'].'.png';
+			global $api_version;
+			$iconurl = 'http://ddragon.leagueoflegends.com/cdn/'.$api_version.'/img/profileicon/'.$this->summonerinfo['general'][$this->summonername]['profileIconId'].'.png';
 			
 			return $iconurl;
 		}
